@@ -6,45 +6,45 @@ import { pb } from "@/lib/pocketbase";
 import { useRouter } from "next/navigation";
 
 type PostProps = {
-  post: {
-    id: string;
-    username: string;
-    food: string;
-    comments: string
-  };
-  engages: {
-    id: string;
-    nb_likes: number;
-    users: string;
-  };
+  id: string;
+  username: string;
+  food: string;
 };
 
-export default function Post({ post, engages }: any) {
-
-  console.log(post)
+export default function Post({ post }: any) {
   const [hearted, setHearted] = useState(false);
   const [saved, setSaved] = useState(false);
   const [postInfo, setPostInfo] = useState(post);
-  const [likes, setLikes] = useState<number>(engages.nb_likes);
-  
+  const [likes, setLikes] = useState<number>(postInfo.likes);
+  const [liked, setLiked] = useState<number>(postInfo.likes);
 
   const sth = `http://127.0.0.1:8090/api/files/posts/${post.id}/${post.food}`;
   const router = useRouter();
 
+  useEffect(() => {}, [hearted]);
+
+  console.log(pb.authStore.model?.username);
+
   //subscribes to changes
 
   useEffect(() => {
-    const subscribeCallback = (e: any ) => {
-      console.log(e.record)
-      
-        setLikes(e.record.nb_likes);
-  
+    const subscribeCallback = (e: any) => {
+      // console.log(e.record);
+
+      setLikes(e.record.likes);
     };
 
-    pb.collection("likes").subscribe(engages.id, subscribeCallback);
+    const subscribeCallbacker = (e: any) => {
+      // console.log(e.record);
+
+      setLiked(e.record.likes);
+    };
+
+    pb.collection("posts").subscribe(post.id, subscribeCallback);
+    // pb.collection("likes").subscribe(likeRecord.id, subscribeCallbacker);
 
     return () => {
-      pb.collection("likes").unsubscribe("*");
+      pb.collection("posts").unsubscribe("*");
     };
   }, []);
 
@@ -56,14 +56,49 @@ export default function Post({ post, engages }: any) {
   //
 
   async function handleLike() {
-    const data = {
-      users: "JSON",
-      nb_likes: likes + 1,
-    };
+    try {
+      const resultList = await pb.collection("likes").getList(1, 1, {
+        filter: `user_id = "${pb.authStore.model?.id}" && post_id = "${post.id}"`,
+      });
+      console.log(resultList.items[0]?.id);
+      if (resultList.totalItems === 0) {
+        const data = {
+          username: post.username,
+          likes: likes + 1,
+        };
+        const record = await pb.collection("posts").update(post.id, data);
+        const likeRecord = {
+          user_id: pb.authStore.model?.id,
+          post_id: post.id,
+          liked: true,
+        };
+        const like = await pb.collection("likes").create(likeRecord);
+      } else {
+        const data = {
+          username: post.username,
+          likes: likes - 1,
+        };
+        const record = await pb.collection("posts").update(post.id, data);
+        await pb.collection("likes").delete(resultList.items[0].id);
+      }
 
-    const record = await pb.collection("likes").update(engages.id, data);
+      console.log(resultList.totalItems);
+    } catch (err: any) {
+      console.log(err.data);
+    }
+
+    // const likeRecord = {
+    //   user_id: pb.authStore.model?.id,
+    //   post_id: post.id,
+    //   liked: true,
+    // };
+
+    // const like = await pb.collection("likes").create(likeRecord);
+
     setHearted(!hearted);
   }
+
+  // @request.auth.id != "" && (user_id != @request.auth.id && post_id != @request.data.post_id)
 
   return (
     <div className="bg-stone-700 rounded-2xl my-4">

@@ -771,6 +771,9 @@ video {
 .opacity-0 {
   opacity: 0;
 }
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 
 :root {
   --background-color: #2b2b2b;

@@ -40,14 +40,6 @@
         "async": false
       }
     },
-    "(app-client)/./src/components/Sidebar.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/components/Sidebar.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
     "(app-client)/./src/components/Post.tsx": {
       "*": {
         "id": "(sc_client)/./src/components/Post.tsx",
@@ -64,17 +56,9 @@
         "async": false
       }
     },
-    "(app-client)/./src/app/(auth)/signup/SignUp.tsx": {
+    "(app-client)/./src/components/Sidebar.tsx": {
       "*": {
-        "id": "(sc_client)/./src/app/(auth)/signup/SignUp.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./src/app/(auth)/login/Login.tsx": {
-      "*": {
-        "id": "(sc_client)/./src/app/(auth)/login/Login.tsx",
+        "id": "(sc_client)/./src/components/Sidebar.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -163,6 +147,22 @@
       ],
       "async": false
     },
+    "/home/thaleous/Documents/recipe/src/components/Post.tsx": {
+      "id": "(app-client)/./src/components/Post.tsx",
+      "name": "*",
+      "chunks": [
+        "app/profile/[username]/page:static/chunks/app/profile/[username]/page.js"
+      ],
+      "async": false
+    },
+    "/home/thaleous/Documents/recipe/src/components/btns/NewPostsBtn.tsx": {
+      "id": "(app-client)/./src/components/btns/NewPostsBtn.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
     "/home/thaleous/Documents/recipe/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}": {
       "id": "(app-client)/./node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}",
       "name": "*",
@@ -186,47 +186,13 @@
         "app/layout:static/chunks/app/layout.js"
       ],
       "async": false
-    },
-    "/home/thaleous/Documents/recipe/src/components/Post.tsx": {
-      "id": "(app-client)/./src/components/Post.tsx",
-      "name": "*",
-      "chunks": [
-        "app/profile/[username]/page:static/chunks/app/profile/[username]/page.js"
-      ],
-      "async": false
-    },
-    "/home/thaleous/Documents/recipe/src/components/btns/NewPostsBtn.tsx": {
-      "id": "(app-client)/./src/components/btns/NewPostsBtn.tsx",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/home/thaleous/Documents/recipe/src/app/(auth)/signup/SignUp.tsx": {
-      "id": "(app-client)/./src/app/(auth)/signup/SignUp.tsx",
-      "name": "*",
-      "chunks": [
-        "app/(auth)/signup/page:static/chunks/app/(auth)/signup/page.js"
-      ],
-      "async": false
-    },
-    "/home/thaleous/Documents/recipe/src/app/(auth)/login/Login.tsx": {
-      "id": "(app-client)/./src/app/(auth)/login/Login.tsx",
-      "name": "*",
-      "chunks": [
-        "app/(auth)/login/page:static/chunks/app/(auth)/login/page.js"
-      ],
-      "async": false
     }
   },
   "entryCSSFiles": {
+    "/home/thaleous/Documents/recipe/src/app/page": [],
     "/home/thaleous/Documents/recipe/src/app/layout": [
       "static/css/app/layout.css"
     ],
-    "/home/thaleous/Documents/recipe/src/app/page": [],
-    "/home/thaleous/Documents/recipe/src/app/(auth)/signup/page": [],
-    "/home/thaleous/Documents/recipe/src/app/(auth)/login/page": [],
     "/home/thaleous/Documents/recipe/src/app/profile/[username]/page": []
   }
 }

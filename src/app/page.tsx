@@ -17,7 +17,7 @@ export default async function Home() {
       <NewPostsBtn />
       <div className=" min-h-screen rounded-3xl p-4">
         {posts.map((post) => (
-          <Post post={post} engages={post.expand.likes} />
+          <Post post={post} />
         ))}
       </div>
     </main>
