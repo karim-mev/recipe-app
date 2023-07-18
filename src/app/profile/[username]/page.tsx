@@ -37,7 +37,7 @@ export default async function Profile({ params }: any) {
           <div className="my-2">
             <div className=" min-h-screen rounded-3xl p-4">
               {userPosts.map((post) => (
-                <Post post={post} engages={post.expand.likes} />
+                <Post post={post} key={post.id} />
               ))}
             </div>
           </div>
