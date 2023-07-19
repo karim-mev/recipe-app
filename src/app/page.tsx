@@ -4,6 +4,8 @@ import { pb } from "@/lib/pocketbase";
 
 export const revalidate = 5;
 
+pb.autoCancellation(false);
+
 async function getPosts() {
   const res = await pb.collection("posts").getFullList({ expand: "likes" });
 

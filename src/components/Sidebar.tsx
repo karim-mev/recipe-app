@@ -4,8 +4,12 @@ import { Bell, BookmarkSimple, Gear, House, User } from "phosphor-react";
 import AuthBtn from "./btns/AuthBtn";
 import { useEffect, useState } from "react";
 import { pb } from "@/lib/pocketbase";
+import { useRouter } from "next/navigation";
+
 
 export default function Sidebar() {
+  const router = useRouter()
+
   const [user, setUser] = useState();
   useEffect(() => {
     async function getUser() {
@@ -13,10 +17,13 @@ export default function Sidebar() {
       if (record) {
         const user = await pb.collection("users").getOne(record);
         setUser(user.username);
+      }else {
+        router.push("/login")
       }
     }
     getUser();
   }, []);
+
   console.log(user);
   return (
     <div className="bg-neutral-600 flex flex-col items-center fixed h-[80vh] w-[13rem] rounded-3xl gap-7 mx-4 my-20 p-4">

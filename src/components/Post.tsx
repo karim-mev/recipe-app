@@ -18,7 +18,7 @@ export default function Post({ post }: any) {
   const [likes, setLikes] = useState<number>(postInfo.likes);
   const [liked, setLiked] = useState<number>(postInfo.likes);
 
-  const sth = `http://127.0.0.1:8090/api/files/posts/${post.id}/${post.food}`;
+  const sth = `${process.env.NEXT_PUBLIC_POCKETBASE}/api/files/posts/${post.id}/${post.food}`;
   const router = useRouter();
 
   useEffect(() => {}, [hearted]);

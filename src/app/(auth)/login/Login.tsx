@@ -18,8 +18,8 @@ export default function Login() {
         .authWithPassword(data.username, data.password);
         // setIsValid(valid)
       router.push("/");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error.message);
     }
   }
 
